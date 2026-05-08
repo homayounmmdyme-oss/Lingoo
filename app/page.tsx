@@ -162,24 +162,24 @@ const HomePage: React.FC = () => {
   };
 
   return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50" dir="rtl">
+      <div className="min-h-screen bg-gradient-to-br from-[#f74697]/5 to-[#4097f2]/5" dir="rtl">
         {/* Header */}
-        <header className="bg-white shadow-sm sticky top-0 z-10">
+        <header className="bg-white/95 backdrop-blur-sm shadow-md sticky top-0 z-10 border-b border-[#ffe073]/30">
           <div className="max-w-6xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-2">
                 <span className="text-3xl">🦜</span>
-                <h1 className="text-2xl font-bold text-blue-600">لینگو</h1>
+                <h1 className="text-2xl font-bold" style={{ color: '#f74697' }}>لینگو</h1>
               </div>
 
               {/* Sort Controls */}
               <div className="flex gap-2">
                 <button
                     onClick={() => handleSortChange("order")}
-                    className={`px-4 py-2 rounded-lg font-bold transition ${
+                    className={`px-4 py-2 rounded-lg font-bold transition-all duration-300 ${
                         sortOrder === "order"
-                            ? "bg-blue-500 text-white"
-                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                            ? "bg-[#f74697] text-white shadow-lg scale-105"
+                            : "bg-gray-100 text-gray-600 hover:bg-[#ffe073] hover:text-gray-800"
                     }`}
                 >
                   📋 Alphabetical
@@ -188,10 +188,10 @@ const HomePage: React.FC = () => {
                     onClick={() => handleSortChange("random")}
                     disabled={isRandomizing}
                     className={`
-                  px-4 py-2 rounded-lg font-bold transition relative
+                  px-4 py-2 rounded-lg font-bold transition-all duration-300 relative
                   ${sortOrder === "random"
-                        ? "bg-purple-500 text-white"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"}
+                        ? "bg-[#f74697] text-white shadow-lg scale-105"
+                        : "bg-gray-100 text-gray-600 hover:bg-[#ffe073] hover:text-gray-800"}
                   ${isRandomizing ? "cursor-wait opacity-75" : ""}
                 `}
                 >
@@ -213,21 +213,21 @@ const HomePage: React.FC = () => {
                 placeholder="🔍 Search idioms in English or Persian..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:outline-none bg-white"
+                className="w-full px-4 py-3 rounded-xl border-2 border-[#ffe073]/50 focus:border-[#f74697] focus:outline-none bg-white shadow-sm transition-all duration-300"
             />
           </div>
 
           {/* Loading Overlay for Random Mode */}
           {isRandomizing && (
               <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex items-center justify-center">
-                <div className="bg-white rounded-2xl p-8 shadow-2xl text-center">
+                <div className="bg-white rounded-2xl p-8 shadow-2xl text-center border-t-4 border-[#f74697]">
                   <div className="text-6xl mb-4 animate-bounce">🎲</div>
-                  <div className="text-2xl font-bold text-purple-600 mb-2">Shuffling Idioms!</div>
+                  <div className="text-2xl font-bold mb-2" style={{ color: '#f74697' }}>Shuffling Idioms!</div>
                   <div className="text-gray-500">Randomizing your learning experience...</div>
                   <div className="mt-4 flex justify-center gap-1">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                    <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse delay-100"></div>
-                    <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse delay-200"></div>
+                    <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#f74697' }}></div>
+                    <div className="w-2 h-2 rounded-full animate-pulse delay-100" style={{ backgroundColor: '#ffe073' }}></div>
+                    <div className="w-2 h-2 rounded-full animate-pulse delay-200" style={{ backgroundColor: '#4097f2' }}></div>
                   </div>
                 </div>
               </div>
@@ -236,9 +236,9 @@ const HomePage: React.FC = () => {
           {/* Two Column Layout */}
           <div className="grid lg:grid-cols-2 gap-6">
             {/* Left Side: Grid of Idioms */}
-            <div className="bg-white rounded-2xl shadow-xl p-4">
-              <div className="flex justify-between items-center mb-4 pb-2 border-b">
-                <h2 className="font-bold text-gray-700">📚 Idioms Collection</h2>
+            <div className="bg-white rounded-2xl shadow-xl p-4 border-t-4 border-[#f74697]">
+              <div className="flex justify-between items-center mb-4 pb-2 border-b border-[#ffe073]/30">
+                <h2 className="font-bold" style={{ color: '#f74697' }}>📚 Idioms Collection</h2>
                 <span className="text-sm text-gray-500">{displayedIdioms.length} idioms</span>
               </div>
 
@@ -250,15 +250,16 @@ const HomePage: React.FC = () => {
                         className={`
                     idiom-item w-full text-right p-3 rounded-lg transition-all duration-300
                     ${selectedIdiom?.idiom === idiom.idiom
-                            ? "bg-blue-500 text-white shadow-md scale-102"
-                            : "bg-gray-50 hover:bg-blue-50 text-gray-700 hover-scale"}
+                            ? "text-white shadow-md scale-102"
+                            : "bg-gray-50 hover:bg-[#ffe073]/30 text-gray-700 hover-scale"}
                   `}
                         style={{
+                          backgroundColor: selectedIdiom?.idiom === idiom.idiom ? '#f74697' : undefined,
                           animation: isRandomizing ? `slideIn 0.3s ease-out ${index * 0.02}s` : "none"
                         }}
                     >
                       <div className="font-bold">{idiom.idiom}</div>
-                      <div className={`text-sm ${selectedIdiom?.idiom === idiom.idiom ? "text-blue-100" : "text-gray-500"}`}>
+                      <div className={`text-sm ${selectedIdiom?.idiom === idiom.idiom ? "text-pink-100" : "text-gray-500"}`}>
                         {idiom.persian}
                       </div>
                     </button>
@@ -273,7 +274,7 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Right Side: Selected Idiom Details */}
-            <div className="bg-white rounded-2xl shadow-xl p-6 detail-card transition-all duration-300">
+            <div className="bg-white rounded-2xl shadow-xl p-6 detail-card transition-all duration-300 border-t-4 border-[#4097f2]">
               {selectedIdiom ? (
                   <>
                     {/* Navigation Arrows */}
@@ -285,7 +286,7 @@ const HomePage: React.FC = () => {
                       p-2 rounded-lg transition transform hover:scale-110
                       ${displayedIdioms.findIndex(i => i.idiom === selectedIdiom.idiom) === 0
                               ? "text-gray-300 cursor-not-allowed"
-                              : "text-gray-600 hover:bg-gray-100"}
+                              : "hover:bg-[#ffe073]/30"}
                     `}
                       >
                         ← Previous
@@ -300,7 +301,7 @@ const HomePage: React.FC = () => {
                       p-2 rounded-lg transition transform hover:scale-110
                       ${displayedIdioms.findIndex(i => i.idiom === selectedIdiom.idiom) === displayedIdioms.length - 1
                               ? "text-gray-300 cursor-not-allowed"
-                              : "text-gray-600 hover:bg-gray-100"}
+                              : "hover:bg-[#ffe073]/30"}
                     `}
                       >
                         Next →
@@ -312,25 +313,25 @@ const HomePage: React.FC = () => {
                       {/* English Idiom */}
                       <div className="text-center">
                         <div className="text-sm text-gray-500 mb-2">English Idiom</div>
-                        <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+                        <h2 className="text-2xl md:text-3xl font-bold" style={{ color: '#f74697' }}>
                           {selectedIdiom.idiom}
                         </h2>
                       </div>
 
                       {/* Fonetic */}
-                      <div className="bg-gray-50 rounded-xl p-4 text-center">
+                      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffe07320' }}>
                         <div className="text-sm text-gray-500 mb-1">🔊 Pronunciation</div>
                         <p className="text-gray-700 font-mono text-sm">{selectedIdiom.fonetic}</p>
                       </div>
 
                       {/* Persian Translation */}
-                      <div className="bg-purple-50 rounded-xl p-4 text-center">
+                      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#f7469720' }}>
                         <div className="text-sm text-gray-500 mb-1">🇮🇷 به فارسی</div>
-                        <p className="text-xl font-bold text-purple-800">{selectedIdiom.persian}</p>
+                        <p className="text-xl font-bold" style={{ color: '#f74697' }}>{selectedIdiom.persian}</p>
                       </div>
 
                       {/* Example Sentence */}
-                      <div className="bg-blue-50 rounded-xl p-4">
+                      <div className="rounded-xl p-4" style={{ backgroundColor: '#4097f210' }}>
                         <div className="text-sm text-gray-500 mb-2">💡 Example Sentence</div>
                         <div
                             className="text-gray-800 italic leading-relaxed"
@@ -339,7 +340,7 @@ const HomePage: React.FC = () => {
                       </div>
 
                       {/* Example Meaning */}
-                      <div className="bg-green-50 rounded-xl p-4">
+                      <div className="rounded-xl p-4" style={{ backgroundColor: '#ffe07320' }}>
                         <div className="text-sm text-gray-500 mb-1">📝 معنی مثال</div>
                         <p className="text-gray-700">{selectedIdiom.exampleMeaning}</p>
                       </div>
@@ -361,105 +362,6 @@ const HomePage: React.FC = () => {
             🤝 Open Source — Add your favorite idioms to /community/idioms.json
           </div>
         </main>
-
-        {/* Custom Styles */}
-        <style jsx global>{`
-          .idiom-highlight {
-            background-color: #fbbf24;
-            color: #1f2937;
-            font-weight: bold;
-            padding: 0.125rem 0.25rem;
-            border-radius: 0.25rem;
-            display: inline-block;
-          }
-
-          @keyframes diceRoll {
-            0% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(90deg) scale(1.2); }
-            50% { transform: rotate(180deg) scale(1); }
-            75% { transform: rotate(270deg) scale(1.2); }
-            100% { transform: rotate(360deg) scale(1); }
-          }
-
-          @keyframes slideIn {
-            from {
-              opacity: 0;
-              transform: translateX(-20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-
-          @keyframes fadeOut {
-            from {
-              opacity: 1;
-              transform: translateY(0);
-            }
-            to {
-              opacity: 0;
-              transform: translateY(-10px);
-            }
-          }
-
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-              transform: translateY(10px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          .animate-dice-roll {
-            animation: diceRoll 0.6s ease-in-out;
-          }
-
-          .animate-fadeOut {
-            animation: fadeOut 0.15s ease-out forwards;
-          }
-
-          .animate-fadeIn {
-            animation: fadeIn 0.3s ease-out forwards;
-          }
-
-          .scale-102 {
-            transform: scale(1.02);
-          }
-
-          .hover-scale {
-            transition: transform 0.2s ease;
-          }
-
-          .hover-scale:hover {
-            transform: scale(1.02);
-          }
-
-          .delay-100 {
-            animation-delay: 100ms;
-          }
-
-          .delay-200 {
-            animation-delay: 200ms;
-          }
-
-          .scrollbar-custom::-webkit-scrollbar {
-            width: 8px;
-          }
-
-          .scrollbar-custom::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-          }
-
-          .scrollbar-custom::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-          }
-        `}</style>
       </div>
   );
 };
