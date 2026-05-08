@@ -4,21 +4,8 @@ import MainTypingArea from "../components/MainTypingArea";
 import Link from "next/link";
 import ProgressBar from "../components/ProgressBar";
 
-const SAMPLE_TEXTS = [
-  "The quick brown fox jumps over the lazy dog.",
-  "React is a JavaScript library for building user interfaces.",
-  "TypeScript adds static typing to JavaScript for better tooling.",
-  "Tailwind CSS provides utility classes for rapid UI development.",
-  "Practice makes perfect when learning to type faster.",
-  "Coding is fun and rewarding. Keep practicing every day.",
-  "The early bird catches the worm, but the night owl stays wise.",
-];
-
 const TypingGame: React.FC = () => {
-  const [textToType, setTextToType] = useState<string>(() => {
-    const randomIndex = Math.floor(Math.random() * SAMPLE_TEXTS.length);
-    return SAMPLE_TEXTS[randomIndex];
-  });
+  const [textToType, setTextToType] = useState<string>("");
   const [userInput, setUserInput] = useState<string>("");
   const [isActive, setIsActive] = useState<boolean>(false);
   const [startTime, setStartTime] = useState<number | null>(null);
@@ -27,6 +14,35 @@ const TypingGame: React.FC = () => {
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [streak, setStreak] = useState<number>(0);
   const [showStats, setShowStats] = useState<boolean>(false);
+  const [sampleTexts, setSampleTexts] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  // Load sample texts from JSON file
+  useEffect(() => {
+    const loadSampleTexts = async () => {
+      try {
+        const response = await fetch('/content/en/sample-texts.json');
+        const data = await response.json();
+        setSampleTexts(data);
+        // Select random text after loading
+        const randomIndex = Math.floor(Math.random() * data.length);
+        setTextToType(data[randomIndex]);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error loading sample texts:', error);
+        // Fallback texts in case of error
+        const fallbackTexts = [
+          "The quick brown fox jumps over the lazy dog.",
+          "React is a JavaScript library for building user interfaces."
+        ];
+        setSampleTexts(fallbackTexts);
+        setTextToType(fallbackTexts[0]);
+        setIsLoading(false);
+      }
+    };
+
+    loadSampleTexts();
+  }, []);
 
   // Calculate statistics in real-time
   useEffect(() => {
@@ -92,11 +108,24 @@ const TypingGame: React.FC = () => {
     setStreak(0);
     setShowStats(false);
 
-    // Pick a new random text
-    const newText =
-        SAMPLE_TEXTS[Math.floor(Math.random() * SAMPLE_TEXTS.length)];
+    // Pick a new random text from loaded sample texts
+    if (sampleTexts.length > 0) {
+      const newText = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
     setTextToType(newText);
+    }
   };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-4xl mb-4">⌨️</div>
+          <div className="text-xl text-blue-600">Loading texts...</div>
+        </div>
+      </div>
+    );
+  }
 
   // Render each character with proper styling
   const renderTextCharacters = () => {
