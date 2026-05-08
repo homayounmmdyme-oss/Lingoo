@@ -40,5 +40,12 @@
   "persian": "حساب پرپول داشتن",
   "example": "I wish my accounts <span class='idiom-highlight'>were in the black</span>.",
   "exampleMeaning": "کاش حساب‌هایم پرپول بودند."
+  },
+  {
+  "idiom": "black and white",
+  "fonetic": "/blæk ənd waɪt/",
+  "persian": "سیاه و سفید (خیر و شر , خوب و بد)",
+  "example": "He tries to see everything in <span class='idiom-highlight'>black and white</span> although he knows this is impossible.",
+  "exampleMeaning": "او سعی می کند همه چیز را خوب و بد ببیند اگرچه می داند که چنین چیزی غیر ممکن است."
   }
 ]
