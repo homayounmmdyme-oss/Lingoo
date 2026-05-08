@@ -1,103 +1,53 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import idiomsData from "@/public/community/idioms.json";
 
 interface Idiom {
-  english: string;
+  idiom: string;
+  fonetic: string;
   persian: string;
-  meaning: string;
+  example: string;
+  exampleMeaning: string;
 }
 
 const HomePage: React.FC = () => {
-  const [idioms, setIdioms] = useState<Idiom[]>([]);
+  const [idioms] = useState<Idiom[]>(idiomsData);
   const [currentIdiom, setCurrentIdiom] = useState<Idiom | null>(null);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  // Load idioms from JSON file
   useEffect(() => {
-    const loadIdioms = async () => {
-      try {
-        console.log("Attempting to load idioms...");
-        const response = await fetch("/community/idioms.json");
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log("Loaded idioms:", data);
-        
-        if (!Array.isArray(data) || data.length === 0) {
-          throw new Error("No idioms found in file");
-        }
-        
-        setIdioms(data);
-        // Pick random idiom
-        const randomIndex = Math.floor(Math.random() * data.length);
-        setCurrentIdiom(data[randomIndex]);
-      } catch (error) {
-        console.error("Error loading idioms:", error);
-        setError(`Failed to load idioms: ${error instanceof Error ? error.message : String(error)}`);
-        
-        // Fallback idioms
-        const fallbackIdioms = [
-          { id: 1, english: "Break the ice", persian: "یخ را شکستن", meaning: "شروع مکالمه" },
-          { id: 2, english: "Hit the sack", persian: "خوابیدن", meaning: "رفتن به رختخواب" },
-          { id: 3, english: "Piece of cake", persian: "خیلی آسان", meaning: "کار آسان" },
-        ];
-        setIdioms(fallbackIdioms);
-        setCurrentIdiom(fallbackIdioms[0]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadIdioms();
-  }, []);
+    if (idioms.length > 0) {
+      const randomIndex = Math.floor(Math.random() * idioms.length);
+      setCurrentIdiom(idioms[randomIndex]);
+    }
+  }, [idioms]);
 
   const nextIdiom = () => {
     if (idioms.length > 0) {
       const randomIndex = Math.floor(Math.random() * idioms.length);
       setCurrentIdiom(idioms[randomIndex]);
-      setShowAnswer(false);
     }
   };
 
-  if (isLoading) {
+  if (!currentIdiom) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
         <div className="text-center">
           <div className="text-5xl mb-4">📖</div>
-          <p className="text-gray-600">در حال بارگذاری...</p>
+          <p className="text-gray-600">Loading idioms...</p>
         </div>
       </div>
     );
   }
 
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
-        <div className="bg-red-50 border border-red-200 rounded-xl p-6 max-w-md text-center">
-          <div className="text-5xl mb-4">⚠️</div>
-          <h3 className="text-lg font-bold text-red-700 mb-2">خطا در بارگذاری</h3>
-          <p className="text-red-600 text-sm mb-4">{error}</p>
-          <p className="text-gray-600 text-xs">مسیر فایل: /public/community/idioms.json</p>
-          <button 
-            onClick={() => window.location.reload()} 
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg text-sm"
-          >
-            تلاش مجدد
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // Function to render example with highlighted idiom
+  const renderExample = (example: string) => {
+    return { __html: example };
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50" dir="rtl">
-      {/* Simple Header */}
+      {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -110,57 +60,82 @@ const HomePage: React.FC = () => {
         </div>
       </header>
 
-      {/* Main Content */}
+      {/* Main Content - Learning Mode (Show Everything) */}
       <main className="max-w-4xl mx-auto px-4 py-8">
-        {currentIdiom && (
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            {/* English Idiom */}
-            <div className="text-center mb-8">
-              <div className="text-sm text-gray-500 mb-2">English Idiom</div>
-              <h2 className="text-4xl font-bold text-gray-800">
-                {currentIdiom.english}
-              </h2>
-            </div>
-
-            {!showAnswer ? (
-              <button
-                onClick={() => setShowAnswer(true)}
-                className="w-full py-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-bold text-xl hover:scale-105 transition-transform"
-              >
-                ✨ نمایش معنی ✨
-              </button>
-            ) : (
-              <div className="space-y-4 animate-fadeIn">
-                <div className="bg-green-50 rounded-xl p-6 text-center">
-                  <div className="text-sm text-gray-500 mb-2">به فارسی</div>
-                  <p className="text-2xl font-bold text-green-700">
-                    {currentIdiom.persian}
-                  </p>
-                </div>
-                <div className="bg-purple-50 rounded-xl p-6 text-center">
-                  <div className="text-sm text-gray-500 mb-2">معنی</div>
-                  <p className="text-lg text-purple-800">
-                    {currentIdiom.meaning}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Next Button */}
-            <button
-              onClick={nextIdiom}
-              className="mt-6 w-full py-3 bg-gray-100 text-gray-700 rounded-xl font-bold hover:bg-gray-200 transition-colors"
-            >
-              اصطلاح بعدی →
-            </button>
+        <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+          {/* Badge */}
+          <div className="text-center mb-6">
+            <span className="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+              📚 Learning Mode
+            </span>
           </div>
-        )}
 
-        {/* Simple counter */}
+          {/* English Idiom */}
+          <div className="text-center mb-6">
+            <div className="text-sm text-gray-500 mb-2">English Idiom</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+              {currentIdiom.idiom}
+            </h2>
+          </div>
+
+          {/* Fonetic */}
+          <div className="bg-gray-50 rounded-xl p-4 mb-4 text-center">
+            <div className="text-sm text-gray-500 mb-1">🔊 Pronunciation (Fonetic)</div>
+            <p className="text-gray-700 font-mono">{currentIdiom.fonetic}</p>
+          </div>
+
+          {/* Persian Translation */}
+          <div className="bg-purple-50 rounded-xl p-4 mb-4 text-center">
+            <div className="text-sm text-gray-500 mb-1">🇮🇷 به فارسی</div>
+            <p className="text-xl font-bold text-purple-800">{currentIdiom.persian}</p>
+          </div>
+
+          {/* Example Sentence */}
+          <div className="bg-blue-50 rounded-xl p-4 mb-4">
+            <div className="text-sm text-gray-500 mb-2">💡 Example Sentence</div>
+            <div 
+              className="text-gray-800 italic leading-relaxed example-container"
+              dangerouslySetInnerHTML={renderExample(currentIdiom.example)}
+            />
+          </div>
+
+          {/* Example Meaning in Persian */}
+          <div className="bg-green-50 rounded-xl p-4 mb-6">
+            <div className="text-sm text-gray-500 mb-1">📝 معنی مثال</div>
+            <p className="text-gray-700">{currentIdiom.exampleMeaning}</p>
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={nextIdiom}
+            className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-bold hover:scale-105 transition-transform"
+          >
+            Next Idiom → 🎯
+          </button>
+
+          {/* Counter */}
+          <div className="text-center mt-4 text-xs text-gray-400">
+            {idioms.indexOf(currentIdiom) + 1} of {idioms.length} idioms
+          </div>
+        </div>
+
+        {/* Footer */}
         <div className="text-center mt-6 text-sm text-gray-500">
-          {idioms.length} اصطلاح در مجموعه
+          🤝 Open Source — Add your favorite idioms to /community/idioms.json
         </div>
       </main>
+
+      {/* Add custom styles for highlighted idiom in example */}
+      <style jsx>{`
+        :global(.idiom-highlight) {
+          background-color: #fbbf24;
+          color: #1f2937;
+          font-weight: bold;
+          padding: 0.125rem 0.25rem;
+          border-radius: 0.25rem;
+          display: inline-block;
+        }
+      `}</style>
     </div>
   );
 };

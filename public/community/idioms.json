@@ -1,27 +1,37 @@
 [
   {
-    "english": "Break the ice",
+    "idiom": "the pot calling the kettle black",
+    "fonetic": "/ðə pɒt ˈkɔːlɪŋ ðə ˈketl blæk/",
+    "persian": "دیگ به دیگ می‌گوید رویت سیاه",
+    "example": "You're calling me lazy? That's <span class='idiom-highlight'>the pot calling the kettle black</span> - you haven't worked all week!",
+    "exampleMeaning": "به من می‌گویی تنبل؟ این شد همان دیگ به دیگ می‌گوید رویت سیاه - تو تمام هفته کار نکردی!"
+  },
+  {
+    "idiom": "break the ice",
+    "fonetic": "/breɪk ði aɪs/",
     "persian": "یخ را شکستن",
-    "meaning": "شروع مکالمه در موقعیت سکوت"
+    "example": "At the party, Sarah told a funny story to <span class='idiom-highlight'>break the ice</span> with the new neighbors.",
+    "exampleMeaning": "در مهمانی، سارا یک داستان خنده‌دار تعریف کرد تا با همسایه‌های جدید یخ را بشکند"
   },
   {
-    "english": "Hit the sack",
-    "persian": "زدن به گونی",
-    "meaning": "خوابیدن"
+    "idiom": "hit the sack",
+    "fonetic": "/hɪt ðə sæk/",
+    "persian": "زدن به گونی (خوابیدن)",
+    "example": "I'm exhausted after work, time to <span class='idiom-highlight'>hit the sack</span> and get some sleep.",
+    "exampleMeaning": "بعد از کار خسته هستم، وقت زدن به گونی و کمی خوابیدن است"
   },
   {
-    "english": "Piece of cake",
-    "persian": "تکه کیک",
-    "meaning": "کار بسیار آسان"
+    "idiom": "piece of cake",
+    "fonetic": "/piːs əv keɪk/",
+    "persian": "تکه کیک (کار بسیار آسان)",
+    "example": "The math test was a <span class='idiom-highlight'>piece of cake</span> - I finished in 15 minutes!",
+    "exampleMeaning": "امتحان ریاضی یک تکه کیک بود - من در ۱۵ دقیقه تمامش کردم!"
   },
   {
-    "english": "Cost an arm and a leg",
-    "persian": "یک دست و یک پا",
-    "meaning": "خیلی گران بودن"
-  },
-  {
-    "english": "Once in a blue moon",
-    "persian": "هر ماه یک بار",
-    "meaning": "خیلی به ندرت"
+    "idiom": "cost an arm and a leg",
+    "fonetic": "/kɒst æn ɑːm ænd ə leɡ/",
+    "persian": "یک دست و یک پا قیمت داشتن",
+    "example": "This new iPhone <span class='idiom-highlight'>costs an arm and a leg</span>, I need to save for months.",
+    "exampleMeaning": "این آیفون جدید یک دست و یک پا قیمت دارد، باید ماه‌ها پس‌انداز کنم"
   }
 ]
