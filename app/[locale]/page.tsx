@@ -196,6 +196,9 @@ const TypingGame: React.FC = () => {
 
   // Render each character with proper styling
   const renderTextCharacters = () => {
+  // For Persian/Farsi, use inline display instead of inline-block
+  const displayStyle = currentLang === 'fa' ? 'inline' : 'inline-block';
+
     return textToType.split("").map((char, index) => {
       let status = "pending";
 
@@ -211,7 +214,7 @@ const TypingGame: React.FC = () => {
           <span
               key={index}
               className={`
-            inline-block font-mono text-2xl sm:text-3xl md:text-4xl font-bold
+          font-mono text-2xl sm:text-3xl md:text-4xl font-bold
             transition-all duration-150 ease-out
             ${status === "correct" ? "text-green-500" : ""}
             ${status === "incorrect" ? "text-red-500 bg-red-100 rounded" : ""}
@@ -219,6 +222,7 @@ const TypingGame: React.FC = () => {
             ${index === userInput.length && !isComplete ? "border-l-4 border-blue-500 animate-pulse" : ""}
           `}
               style={{
+          display: displayStyle,
                 minWidth: char === " " ? "0.5em" : "auto",
               }}
           >
