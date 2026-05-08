@@ -33,5 +33,12 @@
     "persian": "یک دست و یک پا قیمت داشتن",
     "example": "This new iPhone <span class='idiom-highlight'>costs an arm and a leg</span>, I need to save for months.",
     "exampleMeaning": "این آیفون جدید یک دست و یک پا قیمت دارد، باید ماه‌ها پس‌انداز کنم"
+  },
+  {
+  "idiom": "be in the black",
+  "fonetic": "/bi ɪn ðə blæk/",
+  "persian": "حساب پرپول داشتن",
+  "example": "I wish my accounts <span class='idiom-highlight'>were in the black</span>.",
+  "exampleMeaning": "کاش حساب‌هایم پرپول بودند."
   }
 ]
