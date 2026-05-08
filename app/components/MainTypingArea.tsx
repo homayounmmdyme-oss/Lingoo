@@ -6,6 +6,7 @@ interface Props {
     userInput: string;
     handleInputChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
+
 const MainTypingArea = ({
                             renderTextCharacters,
                             isComplete,
@@ -46,11 +47,12 @@ const MainTypingArea = ({
             e.preventDefault();
         }
     };
+
     return (
         <div className="bg-white rounded-2xl shadow-xl border-2 border-blue-200 overflow-hidden">
             <div
                 ref={textDisplayRef}
-                className="p-8 cursor-text min-h-[250px] bg-gray-50"
+                className="p-8 cursor-text min-h-[300px] bg-gradient-to-br from-gray-50 to-white"
             >
                 <div className="leading-loose break-all">{renderTextCharacters()}</div>
 

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import MainTypingArea from "../components/MainTypingArea";
+import Link from "next/link";
 
 const SAMPLE_TEXTS = [
   "The quick brown fox jumps over the lazy dog.",
@@ -24,13 +25,7 @@ const TypingGame: React.FC = () => {
   const [accuracy, setAccuracy] = useState<number>(100);
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [streak, setStreak] = useState<number>(0);
-
-  // const inputRef = useRef<HTMLTextAreaElement>(null);
-  // const textDisplayRef = useRef<HTMLDivElement>(null);
-
-  // Focus input when clicking anywhere on the text area
-
-  // Auto-focus on mount
+  const [showStats, setShowStats] = useState<boolean>(false);
 
   // Calculate statistics in real-time
   useEffect(() => {
@@ -67,6 +62,7 @@ const TypingGame: React.FC = () => {
     if (userInput === textToType && userInput.length > 0 && isActive) {
       setIsComplete(true);
       setIsActive(false);
+      setShowStats(true);
     }
   }, [userInput, textToType, isActive]);
 
@@ -93,18 +89,12 @@ const TypingGame: React.FC = () => {
     setAccuracy(100);
     setIsComplete(false);
     setStreak(0);
+    setShowStats(false);
 
     // Pick a new random text
     const newText =
         SAMPLE_TEXTS[Math.floor(Math.random() * SAMPLE_TEXTS.length)];
     setTextToType(newText);
-
-    // // Focus the input after reset
-    // setTimeout(() => {
-    //   if (inputRef.current) {
-    //     inputRef.current.focus();
-    //   }
-    // }, 0);
   };
 
   // Render each character with proper styling
@@ -135,7 +125,7 @@ const TypingGame: React.FC = () => {
                 minWidth: char === " " ? "0.5em" : "auto",
               }}
           >
-          {char}
+          {char === " " ? "\u00A0" : char}
         </span>
       );
     });
@@ -143,8 +133,6 @@ const TypingGame: React.FC = () => {
 
   // Calculate progress percentage
   const progressPercentage = (userInput.length / textToType.length) * 100;
-
-  // Get motivational message
   const getMotivationalMessage = () => {
     if (isComplete) return "🌟 Amazing! You're a typing master! 🌟";
     if (streak > 15) return "🔥 On fire! Keep going! 🔥";
@@ -157,68 +145,24 @@ const TypingGame: React.FC = () => {
   return (
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
         {/* Header with Duolingo-style bar */}
-        <div className="bg-white border-b-2 border-blue-200 shadow-sm">
-          <div className="max-w-6xl mx-auto px-4 py-4">
+        <div className="bg-white border-b-2 border-blue-200 shadow-sm sticky top-0 z-10">
+          <div className="max-w-4xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="text-4xl">⌨️</div>
                 <h1 className="text-2xl font-bold text-blue-600">TypeFlow</h1>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 bg-blue-100 px-4 py-2 rounded-full">
-                  <span className="text-blue-600 font-bold">{streak}</span>
-                  <span className="text-blue-600">🔥</span>
-                </div>
-              </div>
+              <Link href="/levels" className="bg-blue-100 px-4 py-2 rounded-full">
+                🏆
+              </Link>
             </div>
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          {/* Stats Cards - Duolingo style */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-white rounded-2xl shadow-lg p-5 text-center border-2 border-blue-100 hover:border-blue-300 transition-all">
-              <div className="text-blue-400 text-sm font-bold uppercase tracking-wide mb-2">
-                Speed
-              </div>
-              <div className="text-4xl font-black text-blue-600">{wpm}</div>
-              <div className="text-xs text-gray-500 mt-1">words per minute</div>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg p-5 text-center border-2 border-green-100 hover:border-green-300 transition-all">
-              <div className="text-green-400 text-sm font-bold uppercase tracking-wide mb-2">
-                Accuracy
-              </div>
-              <div className="text-4xl font-black text-green-600">
-                {accuracy}%
-              </div>
-              <div className="text-xs text-gray-500 mt-1">correct matches</div>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg p-5 text-center border-2 border-purple-100 hover:border-purple-300 transition-all">
-              <div className="text-purple-400 text-sm font-bold uppercase tracking-wide mb-2">
-                Progress
-              </div>
-              <div className="text-4xl font-black text-purple-600">
-                {Math.round(progressPercentage)}%
-              </div>
-              <div className="text-xs text-gray-500 mt-1">text completed</div>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg p-5 text-center border-2 border-orange-100 hover:border-orange-300 transition-all">
-              <div className="text-orange-400 text-sm font-bold uppercase tracking-wide mb-2">
-                Characters
-              </div>
-              <div className="text-3xl font-black text-orange-600">
-                {userInput.length} / {textToType.length}
-              </div>
-              <div className="text-xs text-gray-500 mt-1">typed / total</div>
-            </div>
-          </div>
-
-          {/* Progress Bar - Duolingo style */}
-          <div className="mb-8">
-            <div className="bg-blue-200 rounded-full h-4 overflow-hidden shadow-inner">
+        {/* Progress Bar - Top of page under header */}
+        <div className="sticky top-[73px] z-10 bg-blue-50/95 backdrop-blur-sm">
+          <div className="max-w-4xl mx-auto px-4 pt-4 pb-2">
+            <div className="bg-blue-200 rounded-full h-3 overflow-hidden shadow-inner">
               <div
                   className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-300 relative"
                   style={{ width: `${progressPercentage}%` }}
@@ -226,8 +170,14 @@ const TypingGame: React.FC = () => {
                 <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
               </div>
             </div>
+            <div className="flex justify-between mt-1 text-xs text-gray-600">
+              <span>Progress</span>
+              <span>{Math.round(progressPercentage)}%</span>
+            </div>
           </div>
+        </div>
 
+        <div className="max-w-4xl mx-auto px-4 py-8">
           {/* Main Typing Area - Duolingo card style */}
           <MainTypingArea
               handleInputChange={handleInputChange}
@@ -236,55 +186,100 @@ const TypingGame: React.FC = () => {
               userInput={userInput}
           />
 
-          {/* Controls & Completion Message */}
-          <div className="flex justify-center gap-4 mt-8">
-            <button
-                onClick={resetGame}
-                className="px-8 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all shadow-md hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transform hover:scale-105 flex items-center gap-2"
-            >
-              <span>🔄</span>
-              <span>New Challenge</span>
-            </button>
+          {/* Stats Modal - Shows only after completion */}
+          {showStats && isComplete && (
+              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 animate-fadeIn">
+                <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform animate-scaleIn">
+                  <div className="text-center mb-6">
+                    <div className="text-6xl mb-3">🎉</div>
+                    <h2 className="text-3xl font-bold text-blue-600 mb-2">
+                      Great Job!
+                    </h2>
+                    <p className="text-gray-600">{getMotivationalMessage()}</p>
+                  </div>
 
-            {isComplete && (
-                <div className="bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-3 rounded-full font-bold animate-bounce shadow-lg flex items-center gap-2">
-                  <span>🎉</span>
-                  <span>
-                {wpm} WPM with {accuracy}% accuracy!
-              </span>
-                  <span>🎉</span>
-                </div>
-            )}
-          </div>
+                  {/* Stats Cards */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-blue-50 rounded-xl p-4 text-center">
+                      <div className="text-blue-400 text-sm font-bold uppercase tracking-wide mb-1">
+                        Speed
+                      </div>
+                      <div className="text-3xl font-black text-blue-600">{wpm}</div>
+                      <div className="text-xs text-gray-500">WPM</div>
+                    </div>
 
-          {/* Leaderboard style footer */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg border-2 border-blue-200 p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">🏆</div>
-              <h3 className="text-xl font-bold text-blue-600">Pro Tips</h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-              <div className="flex items-start gap-2">
-                <div className="text-blue-500 mt-1">✓</div>
-                <div className="text-gray-700">
-                  Focus on accuracy first - speed will come naturally
+                    <div className="bg-green-50 rounded-xl p-4 text-center">
+                      <div className="text-green-400 text-sm font-bold uppercase tracking-wide mb-1">
+                        Accuracy
+                      </div>
+                      <div className="text-3xl font-black text-green-600">
+                        {accuracy}%
+                      </div>
+                      <div className="text-xs text-gray-500">Correct matches</div>
+                    </div>
+
+                    <div className="bg-purple-50 rounded-xl p-4 text-center">
+                      <div className="text-purple-400 text-sm font-bold uppercase tracking-wide mb-1">
+                        Characters
+                      </div>
+                      <div className="text-3xl font-black text-purple-600">
+                        {userInput.length}
+                      </div>
+                      <div className="text-xs text-gray-500">Typed</div>
+                    </div>
+
+                    <div className="bg-orange-50 rounded-xl p-4 text-center">
+                      <div className="text-orange-400 text-sm font-bold uppercase tracking-wide mb-1">
+                        Streak
+                      </div>
+                      <div className="text-3xl font-black text-orange-600">
+                        {streak}
+                      </div>
+                      <div className="text-xs text-gray-500">Best streak 🔥</div>
+                    </div>
+                  </div>
+
+                  <button
+                      onClick={resetGame}
+                      className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-6 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all transform hover:scale-105 shadow-lg"
+                  >
+                    Try Again 🚀
+                  </button>
                 </div>
               </div>
-              <div className="flex items-start gap-2">
-                <div className="text-blue-500 mt-1">✓</div>
-                <div className="text-gray-700">
-                  Keep a steady rhythm while typing
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <div className="text-blue-500 mt-1">✓</div>
-                <div className="text-gray-700">
-                  Use all fingers for better speed
-                </div>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
+
+        {/* Add CSS animations */}
+        <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        
+        @keyframes scaleIn {
+          from {
+            transform: scale(0.9);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+        
+        .animate-scaleIn {
+          animation: scaleIn 0.3s ease-out;
+        }
+      `}</style>
       </div>
   );
 };
