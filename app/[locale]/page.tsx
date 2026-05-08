@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import MainTypingArea from "../components/MainTypingArea";
 import Link from "next/link";
+import ProgressBar from "../components/ProgressBar";
 
 const SAMPLE_TEXTS = [
   "The quick brown fox jumps over the lazy dog.",
@@ -159,23 +160,7 @@ const TypingGame: React.FC = () => {
           </div>
         </div>
 
-        {/* Progress Bar - Top of page under header */}
-        <div className="sticky top-[73px] z-10 bg-blue-50/95 backdrop-blur-sm">
-          <div className="max-w-4xl mx-auto px-4 pt-4 pb-2">
-            <div className="bg-blue-200 rounded-full h-3 overflow-hidden shadow-inner">
-              <div
-                  className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-300 relative"
-                  style={{ width: `${progressPercentage}%` }}
-              >
-                <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-              </div>
-            </div>
-            <div className="flex justify-between mt-1 text-xs text-gray-600">
-              <span>Progress</span>
-              <span>{Math.round(progressPercentage)}%</span>
-            </div>
-          </div>
-        </div>
+        <ProgressBar progress={progressPercentage}/>
 
         <div className="max-w-4xl mx-auto px-4 py-8">
           {/* Main Typing Area - Duolingo card style */}
@@ -252,34 +237,34 @@ const TypingGame: React.FC = () => {
 
         {/* Add CSS animations */}
         <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
           }
-          to {
-            opacity: 1;
+
+          @keyframes scaleIn {
+            from {
+              transform: scale(0.9);
+              opacity: 0;
+            }
+            to {
+              transform: scale(1);
+              opacity: 1;
+            }
           }
-        }
-        
-        @keyframes scaleIn {
-          from {
-            transform: scale(0.9);
-            opacity: 0;
+
+          .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
           }
-          to {
-            transform: scale(1);
-            opacity: 1;
+
+          .animate-scaleIn {
+            animation: scaleIn 0.3s ease-out;
           }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-        
-        .animate-scaleIn {
-          animation: scaleIn 0.3s ease-out;
-        }
-      `}</style>
+        `}</style>
       </div>
   );
 };
