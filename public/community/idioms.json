@@ -47,5 +47,12 @@
   "persian": "سیاه و سفید (خیر و شر , خوب و بد)",
   "example": "He tries to see everything in <span class='idiom-highlight'>black and white</span> although he knows this is impossible.",
   "exampleMeaning": "او سعی می کند همه چیز را خوب و بد ببیند اگرچه می داند که چنین چیزی غیر ممکن است."
+  },
+  {
+  "idiom": "have a good head on one's shoulders",
+  "fonetic": "/hæv ə ɡʊd hɛd ɒn wʌnz ˈʃəʊldəz/",
+  "persian": "منطقی و باهوش بودن (عقل و شعور داشتن)",
+  "example": "Mary doesn't do well in school, but she <span class='idiom-highlight'>has a good head on her shoulders</span>.",
+  "exampleMeaning": "ماری در مدرسه عملکرد خوبی ندارد، اما منطقی و باهوش است."
   }
 ]
