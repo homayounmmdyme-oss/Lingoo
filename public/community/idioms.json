@@ -54,5 +54,12 @@
   "persian": "منطقی و باهوش بودن (عقل و شعور داشتن)",
   "example": "Mary doesn't do well in school, but she <span class='idiom-highlight'>has a good head on her shoulders</span>.",
   "exampleMeaning": "ماری در مدرسه عملکرد خوبی ندارد، اما منطقی و باهوش است."
+  },
+  {
+  "idiom": "Break a leg",
+  "fonetic": "/breɪk ə lɛɡ/",
+  "persian": "موفق باشی",
+  "example": "Before his performance, his friend said '<span class='idiom-highlight'>break a leg</span>'!",
+  "exampleMeaning": "قبل از اجرا، دوستش به او گفت 'موفق باشی'!"
   }
 ]
