@@ -182,7 +182,7 @@ const HomePage: React.FC = () => {
                             : "bg-gray-100 text-gray-600 hover:bg-[#ffe073] hover:text-gray-800"
                     }`}
                 >
-                  📋 Alphabetical
+                  📋 الفبا
                 </button>
                 <button
                     onClick={() => handleSortChange("random")}
@@ -198,7 +198,7 @@ const HomePage: React.FC = () => {
                 <span className={`inline-block transition-transform ${diceRolling ? "animate-dice-roll" : ""}`}>
                   🎲
                 </span>
-                  {isRandomizing ? " Shuffling..." : " Random"}
+                  {isRandomizing ? " برزدن..." : " تصادفی"}
                 </button>
               </div>
             </div>
@@ -210,7 +210,7 @@ const HomePage: React.FC = () => {
           <div className="mb-6">
             <input
                 type="text"
-                placeholder="🔍 Search idioms in English or Persian..."
+                placeholder="🔍 اصطلاحات خود را به فارسی یا انگلیسی اینجا جستجو کنید..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border-2 border-[#ffe073]/50 focus:border-[#f74697] focus:outline-none bg-white shadow-sm transition-all duration-300"
@@ -222,8 +222,8 @@ const HomePage: React.FC = () => {
               <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex items-center justify-center">
                 <div className="bg-white rounded-2xl p-8 shadow-2xl text-center border-t-4 border-[#f74697]">
                   <div className="text-6xl mb-4 animate-bounce">🎲</div>
-                  <div className="text-2xl font-bold mb-2" style={{ color: '#f74697' }}>Shuffling Idioms!</div>
-                  <div className="text-gray-500">Randomizing your learning experience...</div>
+                  <div className="text-2xl font-bold mb-2" style={{ color: '#f74697' }}>برزدن اصطلاحات!</div>
+                  <div className="text-gray-500">تصادفی کردن تجربه یادگیری شما...</div>
                   <div className="mt-4 flex justify-center gap-1">
                     <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#f74697' }}></div>
                     <div className="w-2 h-2 rounded-full animate-pulse delay-100" style={{ backgroundColor: '#ffe073' }}></div>
@@ -238,8 +238,8 @@ const HomePage: React.FC = () => {
             {/* Left Side: Grid of Idioms */}
             <div className="bg-white rounded-2xl shadow-xl p-4 border-t-4 border-[#f74697]">
               <div className="flex justify-between items-center mb-4 pb-2 border-b border-[#ffe073]/30">
-                <h2 className="font-bold" style={{ color: '#f74697' }}>📚 Idioms Collection</h2>
-                <span className="text-sm text-gray-500">{displayedIdioms.length} idioms</span>
+                <h2 className="font-bold" style={{ color: '#f74697' }}>📚 لیست اصطلاحات</h2>
+                <span className="text-sm text-gray-500">{displayedIdioms.length} اصطلاحات</span>
               </div>
 
               <div className="space-y-2 max-h-[600px] overflow-y-auto">
@@ -267,7 +267,7 @@ const HomePage: React.FC = () => {
 
                 {displayedIdioms.length === 0 && (
                     <div className="text-center py-8 text-gray-500">
-                      No idioms found matching "{searchTerm}"
+                      هیچ اصطلاحاتی برای  &quot;{searchTerm}&quot; پیدا نشد
                     </div>
                 )}
               </div>
@@ -289,7 +289,7 @@ const HomePage: React.FC = () => {
                               : "hover:bg-[#ffe073]/30"}
                     `}
                       >
-                        ← Previous
+                        → قبلی
                       </button>
                       <span className="text-sm text-gray-500">
                     {displayedIdioms.findIndex(i => i.idiom === selectedIdiom.idiom) + 1} / {displayedIdioms.length}
@@ -304,7 +304,7 @@ const HomePage: React.FC = () => {
                               : "hover:bg-[#ffe073]/30"}
                     `}
                       >
-                        Next →
+                     بعدی  ←  
                       </button>
                     </div>
 
@@ -312,7 +312,6 @@ const HomePage: React.FC = () => {
                     <div className="space-y-4">
                       {/* English Idiom */}
                       <div className="text-center">
-                        <div className="text-sm text-gray-500 mb-2">English Idiom</div>
                         <h2 className="text-2xl md:text-3xl font-bold" style={{ color: '#f74697' }}>
                           {selectedIdiom.idiom}
                         </h2>
@@ -326,13 +325,13 @@ const HomePage: React.FC = () => {
 
                       {/* Persian Translation */}
                       <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#f7469720' }}>
-                        <div className="text-sm text-gray-500 mb-1">🇮🇷 به فارسی</div>
+                        <div className="text-sm text-gray-500 mb-1">معنی</div>
                         <p className="text-xl font-bold" style={{ color: '#f74697' }}>{selectedIdiom.persian}</p>
                       </div>
 
                       {/* Example Sentence */}
                       <div className="rounded-xl p-4" style={{ backgroundColor: '#4097f210' }}>
-                        <div className="text-sm text-gray-500 mb-2">💡 Example Sentence</div>
+                        <div className="text-sm text-gray-500 mb-2">💡 مثال انگلیسی</div>
                         <div
                             className="text-gray-800 italic leading-relaxed"
                             dangerouslySetInnerHTML={renderExample(selectedIdiom.example)}
@@ -350,7 +349,7 @@ const HomePage: React.FC = () => {
                   <div className="flex items-center justify-center h-96 text-center">
                     <div>
                       <div className="text-6xl mb-4">📖</div>
-                      <p className="text-gray-500">Loading idioms...</p>
+                      <p className="text-gray-500">در حال بارگیری اصطلاحات...</p>
                     </div>
                   </div>
               )}
