@@ -155,12 +155,6 @@ const HomePage: React.FC = () => {
       }
     }
   };
-
-  // Function to render example with highlighted idiom
-  const renderExample = (example: string) => {
-    return { __html: example };
-  };
-
   return (
       <div className="min-h-screen bg-gradient-to-br from-[#f74697]/5 to-[#4097f2]/5" dir="rtl">
         {/* Header */}
@@ -331,10 +325,8 @@ const HomePage: React.FC = () => {
                       {/* Example Sentence */}
                       <div className="rounded-xl p-4" style={{ backgroundColor: '#4097f210' }}>
                         <div className="text-sm text-gray-500 mb-2">💡 مثال انگلیسی</div>
-                        <div
-                            className="text-gray-800 italic leading-relaxed" style={{direction: 'ltr'}}
-                            dangerouslySetInnerHTML={renderExample(selectedIdiom.example)}
-                        />
+                        <div className="text-gray-800 italic leading-relaxed" style={{direction: 'ltr'}}
+                        >{selectedIdiom.example}</div>
                       </div>
 
                       {/* Example Meaning */}

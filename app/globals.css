@@ -27,15 +27,6 @@ body {
   animation: fadeIn 0.3s ease-out;
 }
 
-.idiom-highlight {
-  background-color: #ffe073;
-  color: #1f2937;
-  font-weight: bold;
-  padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
-  display: inline-block;
-}
-
 @keyframes diceRoll {
   0% {
     transform: rotate(0deg) scale(1);
