@@ -248,7 +248,7 @@ const HomePage: React.FC = () => {
                         key={index}
                         onClick={() => setSelectedIdiom(idiom)}
                         className={`
-                    idiom-item w-full text-right p-3 rounded-lg transition-all duration-300
+                    idiom-item w-full  p-3 rounded-lg transition-all duration-300
                     ${selectedIdiom?.idiom === idiom.idiom
                             ? "text-white shadow-md scale-102"
                             : "bg-gray-50 hover:bg-[#ffe073]/30 text-gray-700 hover-scale"}
@@ -258,8 +258,8 @@ const HomePage: React.FC = () => {
                           animation: isRandomizing ? `slideIn 0.3s ease-out ${index * 0.02}s` : "none"
                         }}
                     >
-                      <div className="font-bold">{idiom.idiom}</div>
-                      <div className={`text-sm ${selectedIdiom?.idiom === idiom.idiom ? "text-pink-100" : "text-gray-500"}`}>
+                      <div className="font-bold text-left">{idiom.idiom}</div>
+                      <div className={`text-sm text-right ${selectedIdiom?.idiom === idiom.idiom ? "text-pink-100" : "text-gray-500"}`}>
                         {idiom.persian}
                       </div>
                     </button>
@@ -333,7 +333,7 @@ const HomePage: React.FC = () => {
                       <div className="rounded-xl p-4" style={{ backgroundColor: '#4097f210' }}>
                         <div className="text-sm text-gray-500 mb-2">💡 مثال انگلیسی</div>
                         <div
-                            className="text-gray-800 italic leading-relaxed"
+                            className="text-gray-800 italic leading-relaxed" style={{direction: 'ltr'}}
                             dangerouslySetInnerHTML={renderExample(selectedIdiom.example)}
                         />
                       </div>
