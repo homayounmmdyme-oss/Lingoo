@@ -242,13 +242,12 @@ const HomePage: React.FC = () => {
                 <span className="text-sm text-gray-500">{displayedIdioms.length} اصطلاحات</span>
               </div>
 
-              <div className="space-y-2 max-h-[600px] overflow-y-auto">
+              <div className="p-4 max-h-150 overflow-y-scroll flex flex-col gap-3 overflow-x-hidden">
                 {displayedIdioms.map((idiom, index) => (
                     <button
                         key={index}
                         onClick={() => setSelectedIdiom(idiom)}
-                        className={`
-                    idiom-item w-full  p-3 rounded-lg transition-all duration-300
+                        className={`cursor-pointer w-full  p-3 rounded-lg transition-all duration-300
                     ${selectedIdiom?.idiom === idiom.idiom
                             ? "text-white shadow-md scale-102"
                             : "bg-gray-50 hover:bg-[#ffe073]/30 text-gray-700 hover-scale"}
