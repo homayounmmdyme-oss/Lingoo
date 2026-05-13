@@ -108,7 +108,7 @@ const TriviaQuestionPage: React.FC = () => {
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-4 py-8">
+      <main className="max-w-3xl mx-auto px-4 pt-8">
         {/* Progress Info */}
         <div className="mb-6 flex justify-between items-center">
           <div className="bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm">

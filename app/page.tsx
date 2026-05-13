@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import Footer from "./components/Footer";
 
 const HomePage: React.FC = () => {
   return (
@@ -24,7 +25,7 @@ const HomePage: React.FC = () => {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 py-12">
+      <main className="max-w-6xl mx-auto px-4 pt-12">
         {/* Hero Section */}
         <div className="text-center mb-12">
           <div className="text-6xl mb-4">🌟</div>
@@ -128,15 +129,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="text-center mt-12 pt-8 border-t border-[#ffe073]/30">
-          <p className="text-sm text-gray-500">
-            🤝 Open Source — با مشارکت شما بهتر می‌شویم
-          </p>
-          <p className="text-xs text-gray-400 mt-2">
-            لینگو - یادگیری زبان انگلیسی به روش مدرن
-          </p>
-        </div>
       </main>
 
       {/* Add bounce animation */}

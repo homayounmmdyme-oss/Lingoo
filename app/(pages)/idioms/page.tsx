@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import idiomsData from "@/public/community/idioms.json";
+import Link from "next/link";
 
 interface Idiom {
   idiom: string;
@@ -161,10 +162,10 @@ const IdiomsPage: React.FC = () => {
         <header className="bg-white/95 backdrop-blur-sm shadow-md sticky top-0 z-10 border-b border-[#ffe073]/30">
           <div className="max-w-6xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between flex-wrap gap-4">
-              <div className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2">
                 <span className="text-3xl">🦜</span>
                 <h1 className="text-2xl font-bold" style={{ color: '#f74697' }}>لینگو</h1>
-              </div>
+              </Link>
 
               {/* Sort Controls */}
               <div className="flex gap-2">
@@ -199,7 +200,7 @@ const IdiomsPage: React.FC = () => {
           </div>
         </header>
 
-        <main className="max-w-6xl mx-auto px-4 py-8">
+        <main className="max-w-6xl mx-auto px-4 pt-8">
           {/* Search Bar */}
           <div className="mb-6">
             <input
@@ -345,11 +346,6 @@ const IdiomsPage: React.FC = () => {
                   </div>
               )}
             </div>
-          </div>
-
-          {/* Footer */}
-          <div className="text-center mt-8 text-sm text-gray-500">
-            🤝 Open Source — Add your favorite idioms to /community/idioms.json
           </div>
         </main>
       </div>

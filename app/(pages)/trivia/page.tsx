@@ -71,7 +71,7 @@ const TriviaGridPage: React.FC = () => {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 py-8">
+      <main className="max-w-6xl mx-auto px-4 pt-8">
         {/* Grid of questions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {shuffledQuestions.map((q, idx) => (
@@ -106,7 +106,6 @@ const TriviaGridPage: React.FC = () => {
           ))}
         </div>
 
-        {/* Fun Footer */}
         <div className="text-center mt-12 text-xs text-gray-400">
           🤔 روی هر کارت کلیک کنید تا به صفحه سوال بروید و پاسخ را ببینید!
         </div>
