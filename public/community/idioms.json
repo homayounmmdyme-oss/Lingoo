@@ -75,5 +75,13 @@
   "persian": "کاری را عالی انجام دادن (به نحو احسنت کاری انجام دادن)",
   "example": "Of course I can do it right. I'll really do it up brown.",
   "exampleMeaning": "البته من می توانم آن کار را درست انجام دهم. من واقعا به نحو احسنت انجامش می‌دهم."
+  },
+
+  {
+    "idiom": "cut the mustard",
+    "fonetic": "/kʌt ðə ˈmʌstərd/",
+    "persian": "کاری را به خوبی انجام دادن (انتظارات را برآورده کردن, در کاری موفق شدن)",
+    "example": "The boss fired him because he couldn't cut the mustard.",
+    "exampleMeaning": "رییس او را اخراج کرد. چون او نمی توانست کارش را به خوبی انجام دهد."
   }
 ]
