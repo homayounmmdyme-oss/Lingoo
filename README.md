@@ -240,12 +240,5 @@ For issues, suggestions, or contributions:
 
 This project is open-source and available under the **MIT License**.
 
-## 🌟 Acknowledgments
-
-- Built with Next.js and React
-- Styled with Tailwind CSS
-- Icons and emojis for visual engagement
-- Community-contributed content
-
 **Happy Learning! 🦜** 
 *Master English, one idiom and one question at a time.*
