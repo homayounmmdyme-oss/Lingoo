@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   congratulate:
@@ -15,30 +14,20 @@ jobs:
     
     steps:
       - name: Post congratulations comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_PAT }}  # ← Uses secret, not hardcoded
           script: |
             const prAuthor = context.payload.pull_request.user.login;
             const prNumber = context.payload.pull_request.number;
             
             const message = `## 🎉 Thank you for your contribution!
             
-            **Your PR (#${prNumber}) has been merged and is now live on the main branch!**
+            **Your PR (#${prNumber}) has been merged!**
             
-            Big thanks to @${prAuthor} for your valuable work on this! 🙏
+            Thanks @${prAuthor}! 🙏
             
-            ---
-            
-            **Merged in:** #${prNumber}
-            
-            ---
-            
-            🌟 **تبریک می‌گم!** / **Congratulations!** 🌟
-            
-            *کمک شما خیلی ارزشمند بود - ممنون که با ما همکاری کردی!*
-            
-            *Your contribution makes a difference - thanks for being part of this journey!*`;
+            🌟 **تبریک می‌گم!** / **Congratulations!** 🌟`;
             
             await github.rest.issues.createComment({
               owner: context.repo.owner,
