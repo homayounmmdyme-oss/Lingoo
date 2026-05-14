@@ -1,10 +1,10 @@
-# 🦜 Lingo - Learn English with Fun!
-
 <div align="center">
 
 🇮🇷 [فارسی](./README.fa.md) | 🇺🇸 [English](./README.md)
 
 </div>
+
+# 🦜 Lingo - Learn English with Fun!
 
 An interactive web application designed for Persian speakers to master English idioms AND test their knowledge through exciting trivia quizzes. Built with modern web technologies for a seamless, engaging learning experience.
 
