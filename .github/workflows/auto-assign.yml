@@ -61,7 +61,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber,
-              body: `Hey @${commenter}! 👋 Thanks for claiming this issue! You've been successfully assigned. 🎉 **Next steps:** ⭐ Star our repository 🍴 Fork our repository 🔨 Make the changes described above 📬 Submit a Pull Request linking to this issue ⏳ Wait for review and feedback! Good luck and happy coding! 🚀 موفق باشید`
+              body: `Hey @${commenter}! 👋\n\nThanks for claiming this issue! You've been successfully assigned. 🎉\n\n**Next steps:**\n⭐ Star our repository\n🍴 Fork our repository\n🔨 Make the changes described above\n📬 Submit a Pull Request linking to this issue\n⏳ Wait for review and feedback!\n\nGood luck and happy coding! 🚀\n\nموفق باشید`
             });
             
             console.log(`✅ Assigned @${commenter} to issue #${issueNumber}`);
