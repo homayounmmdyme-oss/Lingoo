@@ -1,3 +1,9 @@
+<div align="center">
+
+🇮🇷 [فارسی](./Contributing.fa.md) | 🇺🇸 [English](./Contributing.md)
+
+</div>
+
 # 🤝 Contributing to Lingo
 
 Thank you for your interest in contributing to Lingo! Please follow these guidelines to ensure a smooth contribution process.
