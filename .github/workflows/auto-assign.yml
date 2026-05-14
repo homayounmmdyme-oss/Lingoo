@@ -42,7 +42,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issueNumber,
-                body: `Sorry @${commenter}! ❌ This issue is already assigned to ${assignedTo}. Please look for other unassigned issues.`
+                body: `Oh no @${commenter}! 😔 This issue is already assigned to ${assignedTo}. Please find another unassigned issue to work on.`
               });
               
               console.log(`Issue #${issueNumber} already assigned to ${assignedTo}`);
@@ -61,7 +61,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber,
-              body: `✅ @${commenter} assigned to this issue! Good luck! 🚀`
+              body: `Hey @${commenter}! 👋 Thanks for claiming this issue! You've been successfully assigned. 🎉 **Next steps:** ⭐ Star our repository 🍴 Fork our repository 🔨 Make the changes described above 📬 Submit a Pull Request linking to this issue ⏳ Wait for review and feedback! Good luck and happy coding! 🚀 موفق باشید`
             });
             
             console.log(`✅ Assigned @${commenter} to issue #${issueNumber}`);
