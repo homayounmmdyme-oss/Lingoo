@@ -42,7 +42,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issueNumber,
-                body: `Oh no @${commenter}! 😔 This issue is already assigned to ${assignedTo}. Please find another unassigned issue to work on.`
+                body: `Oh no @${commenter}! 😔\n\nThis issue is already assigned to ${assignedTo}.\n\nPlease don’t worry , there are still plenty of other issues waiting for contributors like you. 🙌\n\n👉 Please find another unassigned issue to work on.\n\n**Quick tips:**\n- Check open issues without assignees\n- Read the issue description carefully\n- Comment on the issue before starting if needed\n\nThanks for understanding, and happy coding! 🚀`
               });
               
               console.log(`Issue #${issueNumber} already assigned to ${assignedTo}`);
