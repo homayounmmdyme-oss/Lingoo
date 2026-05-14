@@ -96,11 +96,19 @@
   "persian": "پرهزینه و بی فایده",
   "example": "The new car that he bought is a white elephant , and he doesn't need it at all.",
   "exampleMeaning": "ماشین جدیدی که او خریده است پرهزینه و بی فایده است، و او اصلا به آن احتیاجی ندارد."
-  }, {
+  }, 
+  {
     "idiom": "for a song",
     "fonetic": "/fɔːr ə sɒŋ/",
     "persian": "یک پشیز (چندرغاز, ارزان)",
     "example": "We bought the car for a song and will try to sell it for a higher price.",
     "exampleMeaning": "ما ماشین را چندرغاز خریدیم و سعی خواهیم کرد آن را با قیمت بالاتری بفروشیم."
+  },
+  {
+  "idiom": "sail under false colors",
+  "fonetic": "/seɪl ˈʌndər fɔːls ˈkʌlərz/",
+  "persian": "ظاهر سازی کردن (گرگی در لباس میش بودن)",
+  "example": "Jane has been sailing under false colors . She's really a spy.",
+  "exampleMeaning": "جین تا الان ظاهر سازی می کرده است. او در واقع یک جاسوس بود."
   }
 ]
